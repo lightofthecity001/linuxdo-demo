@@ -1,0 +1,26 @@
+version: '3.8'
+
+services:
+  # 你的 Go 中间件服务
+  linuxdo-guard:
+    build: .                    # 使用当前目录的 Dockerfile 构建
+    container_name: linuxdo-guard
+    restart: always             # 挂了自动重启
+    ports:
+      - "8080:10110"             # 宿主机端口:容器端口
+    environment:
+      # 这里填 Redis 服务的名字，Docker 会自动解析 DNS
+      #- REDIS_ADDR=redis:6379   
+      - GIN_MODE=release        # 开启 Gin 的生产模式
+    depends_on:
+      #- redis                   # 等 Redis 启动了再启动我
+
+  # Redis 服务
+  #redis:
+  #  image: redis:alpine
+  #  container_name: guard-redis
+  #  restart: always
+  #  ports:
+  #    - "6379:6379"             # 如果你想从宿主机连 Redis 调试，可以保留映射
+  #  volumes:
+  #    - ./redis_data:/data      # 把数据持久化到本地，重启不丢失
