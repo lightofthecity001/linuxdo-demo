@@ -3,7 +3,7 @@ FROM golang:alpine AS builder
 
 # 设置环境变量：开启 Go Modules，配置国内代理 (关键步骤)
 ENV GO111MODULE=on \
-    GOPROXY=https://goproxy.cn,direct \
+    #GOPROXY=https://goproxy.cn,direct \
     CGO_ENABLED=0 \
     GOOS=linux \
     GOARCH=amd64

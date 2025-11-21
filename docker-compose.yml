@@ -12,7 +12,7 @@ services:
       # 这里填 Redis 服务的名字，Docker 会自动解析 DNS
       #- REDIS_ADDR=redis:6379   
       - GIN_MODE=release        # 开启 Gin 的生产模式
-    depends_on:
+    #depends_on:
       #- redis                   # 等 Redis 启动了再启动我
 
   # Redis 服务
